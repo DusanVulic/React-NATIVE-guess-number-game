@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "#4e0329",
     // box shaddow for android
-    elevation: 4,
+    elevation: 6,
     //box shaddow for IOS
     shadowColor: "black",
     shadowOffset: { width: 2, height: 6 },
