@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   pressed: {
-    opacity: 0.75,
+    opacity: 0.6,
   },
 });
