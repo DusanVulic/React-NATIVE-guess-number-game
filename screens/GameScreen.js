@@ -2,11 +2,12 @@ import React from "react";
 
 // RN components
 import { StyleSheet, Text, View } from "react-native";
+import Title from "../components/Title";
 
 const GameScreen = () => {
   return (
     <View style={styles.screen}>
-      <Text>Opponent's guess</Text>
+      <Title>Opponent's guess</Title>
       {/* GUESS  */}
       <View>
         <Text>Higher or lover</Text>
