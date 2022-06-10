@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-// import components from RN
-import { StyleSheet, TextInput, View, Alert } from "react-native";
+// import components from RN - *** Keyboard -is to close keyboard
+import { StyleSheet, TextInput, View, Alert, Keyboard } from "react-native";
 //import custom created buttons
 import PrimaryButton from "../components/PrimaryButton";
 
@@ -24,7 +24,7 @@ const StartGameScreen = () => {
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredNumber);
-    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber < 99) {
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
       //show alert
       Alert.alert(
         "invalid number !",
@@ -34,7 +34,10 @@ const StartGameScreen = () => {
       return;
     }
 
-    console.log("number is valid");
+    console.log("number is valid", enteredNumber);
+    setEnteredNumber("");
+    //calling keyboard dismiss function in order to close keyboard
+    Keyboard.dismiss();
   };
 
   return (
@@ -47,6 +50,8 @@ const StartGameScreen = () => {
         autoCorrect={false}
         value={enteredNumber}
         onChangeText={numberInputHandler}
+        //
+        returnKeyType="done"
       />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
