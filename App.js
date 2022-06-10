@@ -10,7 +10,10 @@ import {
 } from "react-native";
 
 //import linear gradient
-// ovo ne radi
+// this doesn't work for me
+
+//import colors from helper file
+import Colors from "./Utils/colors";
 
 //import screens
 import StartGameScreen from "./screens/StartGameScreen";
@@ -50,7 +53,7 @@ export default function App() {
 const styles = StyleSheet.create({
   rootScreen: {
     flex: 1,
-    backgroundColor: "#ddb52f",
+    backgroundColor: Colors.accent500,
   },
   safeView: {
     flex: 1,
