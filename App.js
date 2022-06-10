@@ -1,7 +1,13 @@
 import { useState } from "react";
 
 // RN components
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  SafeAreaView,
+} from "react-native";
 
 //import linear gradient
 // ovo ne radi
@@ -34,7 +40,8 @@ export default function App() {
         style={styles.rootScreen}
       >
         {/* here I pass variable  to render screen programmatically */}
-        {screen}
+        {/* adding safeareaview mush have flex 1 to take all space in flexbox */}
+        <SafeAreaView style={styles.safeView}>{screen}</SafeAreaView>
       </ImageBackground>
     </View>
   );
@@ -45,7 +52,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ddb52f",
   },
-
+  safeView: {
+    flex: 1,
+  },
   backgroundImage: {
     opacity: 0.25,
   },
