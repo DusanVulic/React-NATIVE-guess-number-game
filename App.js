@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+// RN components
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 //import linear gradient
@@ -5,8 +8,23 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 //import screens
 import StartGameScreen from "./screens/StartGameScreen";
+import GameScreen from "./screens/GameScreen";
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState(null);
+
+  const pickedNumberHandler = (pickedNumber) => {
+    setUserNumber(pickedNumber);
+  };
+
+  //create logis for programmaticaly render screens
+
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+
+  if (userNumber) {
+    screen = <GameScreen />;
+  }
+
   return (
     <View style={styles.rootScreen}>
       <ImageBackground
@@ -15,7 +33,8 @@ export default function App() {
         imageStyle={styles.backgroundImage}
         style={styles.rootScreen}
       >
-        <StartGameScreen />
+        {/* here I pass variable  to render screen programmatically */}
+        {screen}
       </ImageBackground>
     </View>
   );

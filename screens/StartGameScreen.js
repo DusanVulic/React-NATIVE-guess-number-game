@@ -5,7 +5,7 @@ import { StyleSheet, TextInput, View, Alert, Keyboard } from "react-native";
 //import custom created buttons
 import PrimaryButton from "../components/PrimaryButton";
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ onPickNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState("");
 
   //function to set entered number
@@ -33,8 +33,8 @@ const StartGameScreen = () => {
       );
       return;
     }
-
-    console.log("number is valid", enteredNumber);
+    onPickNumber(chosenNumber);
+    console.log("number is valid", chosenNumber);
     setEnteredNumber("");
     //calling keyboard dismiss function in order to close keyboard
     Keyboard.dismiss();
