@@ -9,6 +9,12 @@ import NumberContainer from "../components/game/NumberContainer";
 //import primaty button
 import PrimaryButton from "./../components/PrimaryButton";
 
+//import colors
+import Colors from "../Utils/colors";
+
+//import card component -just for layout component
+import Card from "../components/Card";
+
 /// importing code for guess number
 const generateRandomBetween = (min, max, exclude) => {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -69,18 +75,25 @@ const GameScreen = ({ userNumber, onGameOver }) => {
       <Title>Opponent's guess</Title>
       {/* GUESS  */}
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or lover</Text>
+      <Card>
+        <Text style={styles.instructions}>Higher or lover</Text>
         {/* + - */}
-        <View>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "higher")}>
-            +
-          </PrimaryButton>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+              -
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton
+              onPress={nextGuessHandler.bind(this, "higher")}
+              style={styles.buttonContainer}
+            >
+              +
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
       {/* <View>LOG ROUNDS</View> */}
     </View>
   );
@@ -92,5 +105,16 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  instructions: {
+    color: Colors.accent500,
+    fontSize: 24,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
