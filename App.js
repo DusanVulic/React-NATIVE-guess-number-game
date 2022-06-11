@@ -25,6 +25,8 @@ export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(true);
 
+  const [guessRounds, setGuessRounds] = useState(0);
+
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
@@ -37,6 +39,14 @@ export default function App() {
     setGameIsOver(true);
   };
 
+  //start new game function
+
+  const startNewGAmeHAndler = () => {
+    setUserNumber(null);
+    setGuessRounds(0);
+    console.log("start new game");
+  };
+
   //create logic for programmaticaly render screens
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
@@ -47,7 +57,13 @@ export default function App() {
     );
   }
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = (
+      <GameOverScreen
+        userNumber={userNumber}
+        roundsNumber={guessRounds}
+        onStartNewGame={startNewGAmeHAndler}
+      />
+    );
   }
 
   return (
