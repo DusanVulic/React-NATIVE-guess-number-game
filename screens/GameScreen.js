@@ -40,6 +40,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
   );
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [guessRounds, setGuessRounds] = useState([initialGuess]);
 
   //using use effect in order to check if user number is same to the computer number
   useEffect(() => {
@@ -75,6 +76,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     );
 
     setCurrentGuess(newRndNumber);
+    setGuessRounds((prevGuess) => [newRndNumber, ...prevGuess]);
   };
 
   return (
@@ -102,6 +104,11 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         </View>
       </Card>
       {/* <View>LOG ROUNDS</View> */}
+      <View>
+        {guessRounds.map((round) => (
+          <Text key={round}> {round}</Text>
+        ))}
+      </View>
     </View>
   );
 };
