@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // RN components
 import { StyleSheet, Text, View, Alert } from "react-native";
@@ -23,7 +23,7 @@ const generateRandomBetween = (min, max, exclude) => {
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const GameScreen = ({ userNumber }) => {
+const GameScreen = ({ userNumber, onGameOver }) => {
   const initialGuess = generateRandomBetween(
     minBoundary,
     maxBoundary,
@@ -32,12 +32,19 @@ const GameScreen = ({ userNumber }) => {
 
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
+  //using use effect in order to check if user number is same to the computer number
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]);
+
   const nextGuessHandler = (direction) => {
     if (
       (direction === "lower" && currentGuess < userNumber) ||
-      (direction === "lower" && currentGuess < userNumber)
+      (direction === "higher" && currentGuess > userNumber)
     ) {
-      ALert.alert("don't lie", "you know that this is wrong hint", [
+      Alert.alert("don't lie", "you know that this is wrong hint", [
         { text: "sorry", style: "cancel" },
       ]);
       return;
