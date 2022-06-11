@@ -15,6 +15,9 @@ import Colors from "../Utils/colors";
 //import card component -just for layout component
 import Card from "../components/Card";
 
+//importing icons library
+import { Ionicons } from "@expo/vector-icons";
+
 /// importing code for guess number
 const generateRandomBetween = (min, max, exclude) => {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -81,7 +84,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-              -
+              <Ionicons name="md-remove" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
@@ -89,7 +92,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
               onPress={nextGuessHandler.bind(this, "higher")}
               style={styles.buttonContainer}
             >
-              +
+              <Ionicons name="md-add" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>
@@ -109,6 +112,7 @@ const styles = StyleSheet.create({
   instructions: {
     color: Colors.accent500,
     fontSize: 24,
+    marginBottom: 16,
   },
   buttonsContainer: {
     flexDirection: "row",
