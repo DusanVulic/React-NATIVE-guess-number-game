@@ -19,6 +19,8 @@ import Colors from "./Utils/colors";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
+
+///
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const [gameIsOver, setGameIsOver] = useState(true);
@@ -31,6 +33,7 @@ export default function App() {
   //game over checker function
 
   const gameOverHandler = () => {
+    console.log("computer guessed right number");
     setGameIsOver(true);
   };
 

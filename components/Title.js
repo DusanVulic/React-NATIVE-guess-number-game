@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+
     color: Colors.primary500,
     textAlign: "center",
     padding: 12,
