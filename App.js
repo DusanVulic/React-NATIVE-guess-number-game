@@ -34,9 +34,10 @@ export default function App() {
 
   //game over checker function
 
-  const gameOverHandler = () => {
+  const gameOverHandler = (numberOfRounds) => {
     console.log("computer guessed right number");
     setGameIsOver(true);
+    setGuessRounds(numberOfRounds);
   };
 
   //start new game function

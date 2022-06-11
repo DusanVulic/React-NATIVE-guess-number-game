@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // RN components
-import { StyleSheet, Text, View, Alert } from "react-native";
+import { StyleSheet, Text, View, Alert, FlatList } from "react-native";
 import Title from "../components/Title";
 
 //number container component
@@ -17,6 +17,10 @@ import Card from "../components/Card";
 
 //importing icons library
 import { Ionicons } from "@expo/vector-icons";
+
+//import Guess log item component
+
+import GuessLogItem from "../components/game/GuessLogItem";
 
 /// importing code for guess number
 const generateRandomBetween = (min, max, exclude) => {
@@ -45,7 +49,7 @@ const GameScreen = ({ userNumber, onGameOver }) => {
   //using use effect in order to check if user number is same to the computer number
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver();
+      onGameOver(guessRounds.length);
     }
   }, [currentGuess, userNumber, onGameOver]);
 
@@ -79,6 +83,8 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     setGuessRounds((prevGuess) => [newRndNumber, ...prevGuess]);
   };
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's guess</Title>
@@ -104,10 +110,20 @@ const GameScreen = ({ userNumber, onGameOver }) => {
         </View>
       </Card>
       {/* <View>LOG ROUNDS</View> */}
-      <View>
-        {guessRounds.map((round) => (
+      <View style={styles.listContainer}>
+        {/* {guessRounds.map((round) => (
           <Text key={round}> {round}</Text>
-        ))}
+        ))} */}
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => (
+            <GuessLogItem
+              roundNumber={guessRoundsListLength - itemData.index}
+              guess={itemData.item}
+            />
+          )}
+          keyExtractor={(item) => item}
+        />
       </View>
     </View>
   );
@@ -131,5 +147,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
