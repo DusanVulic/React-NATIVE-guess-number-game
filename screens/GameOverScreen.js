@@ -1,6 +1,7 @@
 import React from "react";
 
 import { View, Image, Text, StyleSheet } from "react-native";
+import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 
 //import colors
@@ -17,8 +18,12 @@ const GameOverScreen = () => {
         />
       </View>
       <View>
-        <Text> Your phone needed X rounds to guess Y</Text>
+        <Text style={styles.summaryText}>
+          Your phone needed <Text style={styles.highlightText}>X</Text> rounds
+          to guess <Text style={styles.highlightText}>Y</Text>
+        </Text>
       </View>
+      <PrimaryButton>start new game</PrimaryButton>
     </View>
   );
 };
@@ -44,5 +49,13 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  summaryText: {
+    fontSize: 24,
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  highlightText: {
+    color: Colors.primary500,
   },
 });
