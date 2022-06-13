@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 
 // RN components
-import { StyleSheet, Text, View, Alert, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  FlatList,
+  useWindowDimensions,
+} from "react-native";
 import Title from "../components/Title";
 
 //number container component
@@ -82,10 +89,13 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 
   const guessRoundsListLength = guessRounds.length;
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's guess</Title>
-      {/* GUESS  */}
+  // window dimensions
+
+  const { width, height } = useWindowDimensions();
+
+  let content = (
+    <>
+      {" "}
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <Text style={styles.instructions}>Higher or lover</Text>
@@ -105,7 +115,39 @@ const GameScreen = ({ userNumber, onGameOver }) => {
             </PrimaryButton>
           </View>
         </View>
-      </Card>
+      </Card>{" "}
+    </>
+  );
+
+  if (width > 500) {
+    content = (
+      <>
+        <View style={styles.buttonsContainerWide}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton
+              onPress={nextGuessHandler.bind(this, "higher")}
+              style={styles.buttonContainer}
+            >
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's guess</Title>
+      {/* GUESS  */}
+      {content}
       {/* <View>LOG ROUNDS</View> */}
       <View style={styles.listContainer}>
         {/* {guessRounds.map((round) => (
@@ -149,5 +191,9 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     padding: 16,
+  },
+  buttonsContainerWide: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
