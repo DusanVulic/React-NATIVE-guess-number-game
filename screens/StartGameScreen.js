@@ -12,6 +12,7 @@ import {
   View,
   Alert,
   Keyboard,
+  useWindowDimensions,
 } from "react-native";
 //import custom created buttons
 import PrimaryButton from "../components/PrimaryButton";
@@ -56,12 +57,18 @@ const StartGameScreen = ({ onPickNumber }) => {
     Keyboard.dismiss();
   };
 
+  // function to get dimensions
+
+  const { width, height } = useWindowDimensions();
+
+  const marginTopDistance = height < 380 ? 30 : 100;
+
   return (
-    <View style={styles.rootContainer}>
+    <View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>
       <Title>guess my number</Title>
 
       <Card>
-        <Text style={styles.instructionText}>enter number </Text>
+        <Text style={styles.instructionText}>enter number</Text>
         <TextInput
           style={styles.numberInput}
           maxLength={2}
@@ -88,10 +95,12 @@ const StartGameScreen = ({ onPickNumber }) => {
 
 export default StartGameScreen;
 
+// const deviceHeight = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    marginTop: 100,
+    // marginTop: deviceHeight < 380 ? 30 : 100,
     alignItems: "center",
   },
   instructionText: {
