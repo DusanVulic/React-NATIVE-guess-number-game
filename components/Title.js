@@ -1,5 +1,5 @@
 // RN components
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, Platform } from "react-native";
 
 //import colors from helper file
 
@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     color: Colors.primary500,
     textAlign: "center",
     padding: 12,
-    borderWidth: 2,
+    // borderWidth: Platform.OS === "android" ? 2 : 0,
+    borderWidth: Platform.select({ ios: 0, android: 2 }),
     borderColor: Colors.primary500,
     maxWidth: "80%",
     width: 300,
