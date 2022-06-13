@@ -19,7 +19,7 @@ import {
 //import custom created buttons
 import PrimaryButton from "../components/PrimaryButton";
 //import title component
-import Title from "../components/Title";
+import Title from "../components/Title.ios";
 
 //import card component -just for layout component
 import Card from "../components/Card";
