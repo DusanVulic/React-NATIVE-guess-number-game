@@ -15,6 +15,9 @@ import {
 //import colors from helper file
 import Colors from "./Utils/colors";
 
+//import status bar
+import { StatusBar } from "expo-status-bar";
+
 //import screens
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -67,18 +70,21 @@ export default function App() {
   }
 
   return (
-    <View style={styles.rootScreen}>
-      <ImageBackground
-        source={require("./assets/images/background.png")}
-        resizeMode="cover"
-        imageStyle={styles.backgroundImage}
-        style={styles.rootScreen}
-      >
-        {/* here I pass variable  to render screen programmatically */}
-        {/* adding safeareaview mush have flex 1 to take all space in flexbox */}
-        <SafeAreaView style={styles.safeView}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </View>
+    <>
+      <StatusBar style="light" />
+      <View style={styles.rootScreen}>
+        <ImageBackground
+          source={require("./assets/images/background.png")}
+          resizeMode="cover"
+          imageStyle={styles.backgroundImage}
+          style={styles.rootScreen}
+        >
+          {/* here I pass variable  to render screen programmatically */}
+          {/* adding safeareaview mush have flex 1 to take all space in flexbox */}
+          <SafeAreaView style={styles.safeView}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </View>
+    </>
   );
 }
 
