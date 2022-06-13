@@ -15,12 +15,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-
     color: Colors.primary500,
     textAlign: "center",
     padding: 12,
     borderWidth: 2,
     borderColor: Colors.primary500,
+    maxWidth: "80%",
+    width: 300,
   },
 });
 
